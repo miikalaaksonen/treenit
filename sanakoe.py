@@ -71,7 +71,7 @@ class Sanakoe:
         for indeksi, sanat in enumerate(sanastot):
             print(str(indeksi+1) + ". " + sanat)
 
-        sanastonValinta = LueKayttaja().LueNumero()
+        sanastonValinta = LueKayttaja().LueNumeroAjastettu(99999,len(str(len(sanastot))))
 
         while jatka == True:
             otsikko = [*sanastot][sanastonValinta-1]

@@ -12,7 +12,8 @@ def main():
     for indeksi, sanat in enumerate(pelit):
         print(str(indeksi+1) + ". " + sanat)
 
-    peliValinta = LueKayttaja().LueNumero()
+    peliValinta = LueKayttaja().LueNumeroAjastettu(99999,len(str(len(pelit))))
+    os.system('cls')
     if peliValinta == 1:
         peli = sanakoe.Sanakoe()
         peli.AloitaPeli()
