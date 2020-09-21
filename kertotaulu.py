@@ -98,9 +98,13 @@ class Kertolaskupeli:
         print("")
 
 
-os.system('cls')
-peli = Kertolaskupeli()
-peli.AloitaPeli(10)
-Piirustukset().PirraViiva()
-print("Paina jotain nappia lopettaaksesi")
-LueKayttaja().LueNappi()
+def main():
+    os.system('cls')
+    peli = Kertolaskupeli()
+    peli.AloitaPeli(10)
+    Piirustukset().PirraViiva()
+    print("Paina jotain nappia lopettaaksesi")
+    LueKayttaja().LueNappi()
+
+if __name__ == "__main__":
+    main()

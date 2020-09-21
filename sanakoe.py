@@ -8,7 +8,7 @@ from kirjasto.koekirjasto import *
 
 class Sanasto:
     def LueSanasto(self):
-        nimi = "sanakoe\sanasto.json"
+        nimi = "sanakoe/sanasto.json"
         hakemisto = os.path.dirname(__file__)
         tiedostonimi = os.path.join(hakemisto, nimi)
         tiedosto = open(tiedostonimi, mode="r", encoding="utf-8")
@@ -84,8 +84,15 @@ class Sanakoe:
         print("")
 
 
-os.system('cls')
-peli = Sanakoe()
-peli.AloitaPeli()
-print("Paina jotain nappia lopettaaksesi")
-LueKayttaja().LueNappi()
+def main():
+    os.system('cls')
+    peli = Sanakoe()
+    peli.AloitaPeli()
+    print("Paina jotain nappia lopettaaksesi")
+    LueKayttaja().LueNappi()
+
+if __name__ == "__main__":
+    main()
+
+
+
