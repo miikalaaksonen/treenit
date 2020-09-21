@@ -1,0 +1,29 @@
+{
+    "Värit":
+    {
+        "punainen": "red",
+        "valkoinen": "white",
+        "harmaa": "grey",
+        "musta": "black",
+        "keltainen": "yellow",
+        "oranssi": "orange",
+        "vihreä": "green",
+        "sininen": "blue",
+        "ruskea": "brown",
+        "pinkki": "pink",
+        "violetti": "purple"
+    },
+    "Numerot 11-20":
+    {
+        "11": "eleven",
+        "12": "twelve",
+        "13": "thirteen",
+        "14": "fourteen",
+        "15": "fifteen",
+        "16": "sixteen",
+        "17": "seventeen",
+        "18": "eighteen",
+        "19": "nineteen",
+        "20": "twenty"
+    }
+}
