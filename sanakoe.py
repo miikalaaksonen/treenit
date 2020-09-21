@@ -41,8 +41,11 @@ class Sanakoe:
                 print(bcolors.BOLD + "Oikein" + bcolors.ENDC)
                 oikeat = oikeat+1
             else:
+
                 print(bcolors.BOLD + "Väärin. Oikea vastaus on " +
                       str(oikeavastaus) + bcolors.ENDC)
+                if vastaus.lower() == oikeavastaus.lower():
+                    print("Muista isot kirjaimet")
                 vaarat = vaarat+1
             Piirustukset().PirraViiva()
 
