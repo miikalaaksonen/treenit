@@ -5,21 +5,21 @@ import kertotaulu
 from kirjasto.koekirjasto import LueKayttaja
 from kirjasto.koekirjasto import Piirustukset
 
-pelit = ["sanakoe", "kertotaulut"]
 
 def main():
     os.system('cls')
+
+    pelit = {"sanakoe": sanakoe.Sanakoe(), "kertotaulut": kertotaulu.Kertolaskupeli()}
+
     for indeksi, sanat in enumerate(pelit):
         print(str(indeksi+1) + ". " + sanat)
 
     peliValinta = LueKayttaja().LueNumeroAjastettu(99999,len(str(len(pelit))))
     os.system('cls')
-    if peliValinta == 1:
-        peli = sanakoe.Sanakoe()
-        peli.AloitaPeli()
-    elif peliValinta == 2:
-        peli  = kertotaulu.Kertolaskupeli()
-        peli.AloitaPeli(10)
+    pelinNimi = [*pelit][peliValinta-1]
+    peli = pelit[pelinNimi]
+    peli.AloitaPeli()
+
     Piirustukset().PirraViiva()
     print("Paina jotain nappia lopettaaksesi")
     LueKayttaja().LueNappi()

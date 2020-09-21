@@ -66,7 +66,8 @@ class Kertolaskupeli:
         else:
             print("Harjoittele vielä!")
 
-    def AloitaPeli(self, maksimi):
+    def AloitaPeli(self):
+        maksimi = 10
         jatka = True
         Piirustukset().PiirraTervetuloa()
         Piirustukset().PiirraKuutiot()
@@ -101,7 +102,7 @@ class Kertolaskupeli:
 def main():
     os.system('cls')
     peli = Kertolaskupeli()
-    peli.AloitaPeli(10)
+    peli.AloitaPeli()
     Piirustukset().PirraViiva()
     print("Paina jotain nappia lopettaaksesi")
     LueKayttaja().LueNappi()
