@@ -25,5 +25,27 @@
         "18": "eighteen",
         "19": "nineteen",
         "20": "twenty"
+    },
+    "Saksa: kappale 12":
+    {
+        "sakset": "die Schere",
+        "kuulakärkikynä": "der Kuli",
+        "kumi": "der Radiergummi",
+        "teroitin": "der Spitzer",
+        "pensseli": "der Pinsel",
+        "liimapuikko": "der Klebestift",
+        "viivotin": "das Lineal",
+        "täytekynä": "der Füller",
+        "kirja": "das Buch",
+        "eväslaatikko": "die Brotdose",
+        "juomapullo": "die Trinkflasche",
+        "vesivärit": "der Malkasten",
+        "penaali": "das Mäppchen",
+        "värikynä": "der Buntstift",
+        "kansio": "die Mappe",
+        "vihko": "das Heft",
+        "lehtiö": "der Block",
+        "lyijykynä": "der Bleistift",
+        "koululaukku": "die Schultasche"
     }
 }

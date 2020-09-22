@@ -4,16 +4,27 @@ import sys
 import time
 import msvcrt
 import json
+import configparser
 from kirjasto.koekirjasto import *
 
 class Sanasto:
-    def LueSanasto(self):
+
+    def LueSanastoJson(self):
         nimi = "sanakoe/sanasto.json"
         hakemisto = os.path.dirname(__file__)
         tiedostonimi = os.path.join(hakemisto, nimi)
         tiedosto = open(tiedostonimi, mode="r", encoding="utf-8")
         sanastoHakemisto = json.load(tiedosto)
         tiedosto.closed
+        return sanastoHakemisto
+
+    def LueSanastoIni(self):
+        nimi = "sanakoe/sanasto.ini"
+        hakemisto = os.path.dirname(__file__)
+        tiedostonimi = os.path.join(hakemisto, nimi)
+        config = configparser.ConfigParser()
+        config.read(tiedostonimi, encoding="utf-8")
+        sanastoHakemisto = config._sections
         return sanastoHakemisto
 
 class Sanakoe:
@@ -66,10 +77,10 @@ class Sanakoe:
         Piirustukset().PiirraTervetuloa()
         print("")
 
-        sanastot = Sanasto().LueSanasto()
+        sanastot = Sanasto().LueSanastoIni()
 
-        for indeksi, sanat in enumerate(sanastot):
-            print(str(indeksi+1) + ". " + sanat)
+        for indeksi, sanasto in enumerate(sanastot):
+            print(str(indeksi+1) + ". " + sanasto)
 
         sanastonValinta = LueKayttaja().LueNumeroAjastettu(99999,len(str(len(sanastot))))
 
