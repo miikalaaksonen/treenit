@@ -36,51 +36,50 @@ class Sanakoe:
         oikeat = 0
         vaarat = 0
 
-        print(otsikko + " valittu\n")
-        print("Aloitetaan")
+        Tulosta.Normaali(otsikko + " valittu\n")
+        Tulosta.Normaali("Aloitetaan")
         Piirustukset().PirraViiva()
         for indeksi, kysymys in enumerate(sanalista):
-            print("Kysymys (" + str(indeksi+1) + "/" + str(len(sanalista)) + ")")
-            print("")
-            print(bcolors.WARNING + kysymys +" ?" + bcolors.ENDC)
-            print("")
+            Tulosta.Normaali("Kysymys (" + str(indeksi+1) + "/" + str(len(sanalista)) + ")")
+            Tulosta.Normaali("")
+            Tulosta.Keltainen(kysymys +" ?")
+            Tulosta.Normaali("")
 
             oikeavastaus = sanat[kysymys]
             vastaus = LueKayttaja().LueVastausSana()
 
             if vastaus == oikeavastaus:
-                print(bcolors.BOLD + "Oikein" + bcolors.ENDC)
+                Tulosta.Korostus("Oikein")
                 oikeat = oikeat+1
             else:
 
-                print(bcolors.BOLD + "Väärin. Oikea vastaus on " +
-                      str(oikeavastaus) + bcolors.ENDC)
+                Tulosta.Korostus("Väärin. Oikea vastaus on " + str(oikeavastaus))
                 if vastaus.lower() == oikeavastaus.lower():
-                    print("Muista isot kirjaimet")
+                    Tulosta.Normaali("Muista isot kirjaimet")
                 vaarat = vaarat+1
             Piirustukset().PirraViiva()
 
-        print("************************")
-        print("* Oikein " + str(oikeat) + " * Väärin " + str(vaarat)+" *")
-        print("************************")
+        Tulosta.Normaali("************************")
+        Tulosta.Normaali("* Oikein " + str(oikeat) + " * Väärin " + str(vaarat)+" *")
+        Tulosta.Normaali("************************")
 
         if vaarat == 0:
-            print("Erittäin hyvä!")
+            Tulosta.Normaali("Erittäin hyvä!")
             Piirustukset().PirraSatunnainen()
-            print("")
+            Tulosta.Normaali("")
 
         else:
-            print("Harjoittele vielä!")
+            Tulosta.Normaali("Harjoittele vielä!")
 
     def AloitaPeli(self):
         jatka = True
         Piirustukset().PiirraTervetuloa()
-        print("")
+        Tulosta.Normaali("")
 
         sanastot = Sanasto().LueSanastoIni()
 
         for indeksi, sanasto in enumerate(sanastot):
-            print(str(indeksi+1) + ". " + sanasto)
+            Tulosta.Normaali(str(indeksi+1) + ". " + sanasto)
 
         sanastonValinta = LueKayttaja().LueNumeroAjastettu(99999,len(str(len(sanastot))))
 
@@ -88,18 +87,18 @@ class Sanakoe:
             otsikko = [*sanastot][sanastonValinta-1]
             sanasto = sanastot[otsikko]
             self.Koe(otsikko,sanasto)
-            print(bcolors.BOLD + "Pelaataanko uudestaan? (k/e)" + bcolors.ENDC)
+            Tulosta.Korostus("Pelaataanko uudestaan? (k/e)")
             jatka = LueKayttaja().LueVastausKnappi()
             os.system('cls')
-        print("Kiva kun pelasit ja opit uutta!")
-        print("")
+        Tulosta.Normaali("Kiva kun pelasit ja opit uutta!")
+        Tulosta.Normaali("")
 
 
 def main():
     os.system('cls')
     peli = Sanakoe()
     peli.AloitaPeli()
-    print("Paina jotain nappia lopettaaksesi")
+    Tulosta.Normaali("Paina jotain nappia lopettaaksesi")
     LueKayttaja().LueNappi()
 
 if __name__ == "__main__":

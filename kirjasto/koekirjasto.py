@@ -14,6 +14,30 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+class Tulosta:
+
+    
+    @classmethod
+    def Normaali(cls,teksti):
+        print(teksti)
+
+    @classmethod
+    def Korostus(cls,teksti):
+        print(bcolors.BOLD + teksti + bcolors.ENDC)
+
+    @classmethod
+    def Keltainen(cls,teksti):
+        print(bcolors.WARNING + teksti + bcolors.ENDC)
+
+    @classmethod
+    def Sininen(cls,teksti):
+        print(bcolors.OKBLUE + teksti + bcolors.ENDC)
+
+    @classmethod
+    def Vihrea(cls,teksti):
+        print(bcolors.OKGREEN + teksti + bcolors.ENDC)
+
+
 class Piirustukset:
 
     kuvat = {
@@ -51,11 +75,10 @@ class Piirustukset:
         tiedosto = open(tiedostonimi, mode="r", encoding="utf-8")
         teksti = tiedosto.read()
         tiedosto.closed
-        print(teksti)
+        Tulosta.Normaali(teksti)
 
     def PirraViiva(self):
-        print(bcolors.OKGREEN +
-              "--------------------------------------------------------------------------------" + bcolors.ENDC)
+        Tulosta.Vihrea("--------------------------------------------------------------------------------")
 
 class LueKayttaja:
     def OnkoNumero(self, teksti):

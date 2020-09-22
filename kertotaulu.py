@@ -15,7 +15,7 @@ class Kertolaskupeli:
             vaihto = edellinen
             edellinen = seuraava
             seuraava = vaihto
-        print("Vinkki: isompi kuin " + str(edellinen) +
+        Tulosta.Normaali("Vinkki: isompi kuin " + str(edellinen) +
               " pienempi kuin " + str(seuraava))
 
     def Taulutesti(self, taulunnumero, maksimi, vinkit, ajastus):
@@ -25,15 +25,15 @@ class Kertolaskupeli:
         oikeat = 0
         vaarat = 0
 
-        print("Kertotaulu " + str(taulunnumero) + " valittu.\n")
-        print("Aloitetaan")
+        Tulosta.Normaali("Kertotaulu " + str(taulunnumero) + " valittu.\n")
+        Tulosta.Normaali("Aloitetaan")
         Piirustukset().PirraViiva()
         for indeksi, kysymys in enumerate(numerot):
-            print("Kysymys (" + str(indeksi+1) + "/" + str(maksimi) + ")")
-            print("")
-            print(bcolors.WARNING + "Paljonko on " + str(kysymys) +
-                  " x " + str(taulunnumero)+" ?" + bcolors.ENDC)
-            print("")
+            Tulosta.Normaali("Kysymys (" + str(indeksi+1) + "/" + str(maksimi) + ")")
+            Tulosta.Normaali("")
+            Tulosta.Keltainen("Paljonko on " + str(kysymys) +
+                  " x " + str(taulunnumero)+" ?")
+            Tulosta.Normaali("")
             if vinkit:
                 self.TulostaVinkit(kysymys, taulunnumero)
 
@@ -45,58 +45,57 @@ class Kertolaskupeli:
             vastausnumero = LueKayttaja().LueNumeroAjastettu(aika,len(str(oikeavastaus)))
 
             if vastausnumero == oikeavastaus:
-                print(bcolors.BOLD + "Oikein" + bcolors.ENDC)
+                Tulosta.Korostus("Oikein")
                 Piirustukset().PiirraTahti()
                 oikeat = oikeat+1
             else:
-                print(bcolors.BOLD + "Väärin. Oikea vastaus on " +
-                      str(oikeavastaus) + bcolors.ENDC)
+                Tulosta.Korostus("Väärin. Oikea vastaus on " + str(oikeavastaus))
                 vaarat = vaarat+1
             Piirustukset().PirraViiva()
 
-        print("************************")
-        print("* Oikein " + str(oikeat) + " * Väärin " + str(vaarat)+" *")
-        print("************************")
+        Tulosta.Normaali("************************")
+        Tulosta.Normaali("* Oikein " + str(oikeat) + " * Väärin " + str(vaarat)+" *")
+        Tulosta.Normaali("************************")
 
         if vaarat == 0:
-            print("Erittäin hyvä!")
+            Tulosta.Normaali("Erittäin hyvä!")
             Piirustukset().PirraSatunnainen()
-            print("")
+            Tulosta.Normaali("")
 
         else:
-            print("Harjoittele vielä!")
+            Tulosta.Normaali("Harjoittele vielä!")
 
     def AloitaPeli(self):
         maksimi = 10
         jatka = True
         Piirustukset().PiirraTervetuloa()
         Piirustukset().PiirraKuutiot()
-        print("")
-        print("Anna kertotaulun numero jota haluat haluat harjoitella. Mikä vain kokonaisluku")
+        Tulosta.Normaali("")
+        Tulosta.Normaali("Anna kertotaulun numero jota haluat haluat harjoitella. Mikä vain kokonaisluku")
         taulunnumero = LueKayttaja().LueNumero()
 
-        print(bcolors.BOLD + "Haluatko vinkit käyttöön? (k/e)" + bcolors.ENDC)
+        Tulosta.Korostus("Haluatko vinkit käyttöön? (k/e)")
         vinkit = LueKayttaja().LueVastausKnappi()
         if vinkit:
-            print("Vinkit käytössä")
+            Tulosta.Normaali("Vinkit käytössä")
         else:
-            print("Vinkit ei käytössä")
+            Tulosta.Normaali("Vinkit ei käytössä")
 
-            print("")
-        print(bcolors.BOLD + "Haluatko 10s ajastuksen käyttöön? (k/e)" + bcolors.ENDC)
+            Tulosta.Normaali("")
+        Tulosta.Korostus("Haluatko 10s ajastuksen käyttöön? (k/e)")
         ajastus = LueKayttaja().LueVastausKnappi()
         if ajastus:
-            print("Ajastus käytössä")
+            Tulosta.Normaali("Ajastus käytössä")
         else:
-            print("Ajastus ei käytössä")
+            Tulosta.Normaali("Ajastus ei käytössä")
 
         while jatka == True:
             Piirustukset().PirraViiva()
             self.Taulutesti(taulunnumero, maksimi, vinkit, ajastus)
-            print(bcolors.BOLD + "Pelaataanko uudestaan? (k/e)" + bcolors.ENDC)
+            Tulosta.Korostus("Pelaataanko uudestaan? (k/e)")
             jatka = LueKayttaja().LueVastausKnappi()
-        print("Kiva kun pelasit ja opit uutta!")
-        print("")
+        Tulosta.Normaali("Kiva kun pelasit ja opit uutta!")
+        Tulosta.Normaali("")
 
 
 def main():
@@ -104,7 +103,7 @@ def main():
     peli = Kertolaskupeli()
     peli.AloitaPeli()
     Piirustukset().PirraViiva()
-    print("Paina jotain nappia lopettaaksesi")
+    Tulosta.Normaali("Paina jotain nappia lopettaaksesi")
     LueKayttaja().LueNappi()
 
 if __name__ == "__main__":
