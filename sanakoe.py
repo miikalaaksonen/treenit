@@ -88,13 +88,13 @@ class Sanakoe:
             self.Koe(otsikko,sanasto)
             Tulosta.Korostus("Pelaataanko uudestaan? (k/e)")
             jatka = LueKayttaja().LueVastausKnappi()
-            os.system('cls')
+            Tulosta.TyhjaRuutu()
         Tulosta.Normaali("Kiva kun pelasit ja opit uutta!")
         Tulosta.Normaali("")
 
 
 def main():
-    os.system('cls')
+    Tulosta.TyhjaRuutu()
     peli = Sanakoe()
     peli.AloitaPeli()
     Tulosta.Normaali("Paina jotain nappia lopettaaksesi")

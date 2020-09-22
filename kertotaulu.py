@@ -1,4 +1,3 @@
-import os
 import random
 from kirjasto.koekirjasto import Tulosta
 from kirjasto.koekirjasto import LueKayttaja
@@ -97,7 +96,7 @@ class Kertolaskupeli:
 
 
 def main():
-    os.system('cls')
+    Tulosta.TyhjaRuutu()
     peli = Kertolaskupeli()
     peli.AloitaPeli()
     Piirustukset().PirraViiva()

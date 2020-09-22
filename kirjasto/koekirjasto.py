@@ -16,6 +16,9 @@ class bcolors:
 
 class Tulosta:
 
+    @classmethod
+    def TyhjaRuutu(cls):
+        os.system('cls')
     
     @classmethod
     def Normaali(cls,teksti):
