@@ -1,10 +1,8 @@
 import os
 import random
-import sys
-import time
-import msvcrt
-from kirjasto.koekirjasto import *
-
+from kirjasto.koekirjasto import Tulosta
+from kirjasto.koekirjasto import LueKayttaja
+from kirjasto.koekirjasto import Piirustukset
 
 class Kertolaskupeli:
 

@@ -1,5 +1,4 @@
 import os
-import sys
 import sanakoe
 import kertotaulu
 from kirjasto.koekirjasto import LueKayttaja
