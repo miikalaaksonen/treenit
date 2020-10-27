@@ -91,6 +91,7 @@ class Kertolaskupeli:
             self.Taulutesti(taulunnumero, maksimi, vinkit, ajastus)
             Tulosta.Korostus("Pelaataanko uudestaan? (k/e)")
             jatka = LueKayttaja().LueVastausKnappi()
+            Tulosta.TyhjaRuutu()
         Tulosta.Normaali("Kiva kun pelasit ja opit uutta!")
         Tulosta.Normaali("")
 
