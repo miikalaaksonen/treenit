@@ -2,6 +2,7 @@ import random
 from kirjasto.koekirjasto import Tulosta
 from kirjasto.koekirjasto import LueKayttaja
 from kirjasto.koekirjasto import Piirustukset
+from kirjasto.koekirjasto import LueAsetukset
 
 class Kertolaskupeli:
 
@@ -15,7 +16,7 @@ class Kertolaskupeli:
         Tulosta.Normaali("Vinkki: isompi kuin " + str(edellinen) +
               " pienempi kuin " + str(seuraava))
 
-    def Taulutesti(self, taulunnumero, maksimi, vinkit, ajastus):
+    def Taulutesti(self, taulunnumero, maksimi, vinkit, ajastus, maksimiaika):
         numerot = list(range(1, maksimi+1))
         random.shuffle(numerot)
 
@@ -36,7 +37,7 @@ class Kertolaskupeli:
 
             aika = 999999
             if ajastus:
-                aika = 10
+                aika = maksimiaika
 
             oikeavastaus = kysymys * taulunnumero
             vastausnumero = LueKayttaja().LueNumeroAjastettu(aika,len(str(oikeavastaus)))
@@ -63,7 +64,12 @@ class Kertolaskupeli:
             Tulosta.Normaali("Harjoittele vielä!")
 
     def AloitaPeli(self):
-        maksimi = 10
+
+        asetukset = LueAsetukset().LueIni("../asetukset.ini")["kertotaulu"]
+        maksimi = int(asetukset["maksimi"])
+        maksimiaika = int(asetukset["maksimiaika"])
+        vinkit = asetukset["vinkit"] == "True"
+
         jatka = True
         Piirustukset().PiirraTervetuloa()
         Piirustukset().PiirraKuutiot()
@@ -71,15 +77,13 @@ class Kertolaskupeli:
         Tulosta.Normaali("Anna kertotaulun numero jota haluat haluat harjoitella. Mikä vain kokonaisluku")
         taulunnumero = LueKayttaja().LueNumero()
 
-        Tulosta.Korostus("Haluatko vinkit käyttöön? (k/e)")
-        vinkit = LueKayttaja().LueVastausKnappi()
         if vinkit:
-            Tulosta.Normaali("Vinkit käytössä")
+            Tulosta.Normaali("\nVinkit käytössä\n")
         else:
-            Tulosta.Normaali("Vinkit ei käytössä")
+            Tulosta.Normaali("\nVinkit ei käytössä\n")
 
             Tulosta.Normaali("")
-        Tulosta.Korostus("Haluatko 10s ajastuksen käyttöön? (k/e)")
+        Tulosta.Korostus("Haluatko "+str(maksimiaika)+"s ajastuksen käyttöön? (k/e)")
         ajastus = LueKayttaja().LueVastausKnappi()
         if ajastus:
             Tulosta.Normaali("Ajastus käytössä")
@@ -88,7 +92,7 @@ class Kertolaskupeli:
 
         while jatka == True:
             Piirustukset().PirraViiva()
-            self.Taulutesti(taulunnumero, maksimi, vinkit, ajastus)
+            self.Taulutesti(taulunnumero, maksimi, vinkit, ajastus,maksimiaika)
             Tulosta.Korostus("Pelaataanko uudestaan? (k/e)")
             jatka = LueKayttaja().LueVastausKnappi()
             Tulosta.TyhjaRuutu()
