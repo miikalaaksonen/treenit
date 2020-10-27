@@ -5,26 +5,7 @@ import configparser
 from kirjasto.koekirjasto import Tulosta
 from kirjasto.koekirjasto import LueKayttaja
 from kirjasto.koekirjasto import Piirustukset
-
-class Sanasto:
-
-    def LueSanastoJson(self):
-        nimi = "sanakoe/sanasto.json"
-        hakemisto = os.path.dirname(__file__)
-        tiedostonimi = os.path.join(hakemisto, nimi)
-        tiedosto = open(tiedostonimi, mode="r", encoding="utf-8")
-        sanastoHakemisto = json.load(tiedosto)
-        tiedosto.closed
-        return sanastoHakemisto
-
-    def LueSanastoIni(self):
-        nimi = "sanakoe/sanasto.ini"
-        hakemisto = os.path.dirname(__file__)
-        tiedostonimi = os.path.join(hakemisto, nimi)
-        config = configparser.ConfigParser()
-        config.read(tiedostonimi, encoding="utf-8")
-        sanastoHakemisto = config._sections
-        return sanastoHakemisto
+from kirjasto.koekirjasto import LueAsetukset
 
 class Sanakoe:
 
@@ -75,7 +56,7 @@ class Sanakoe:
         Piirustukset().PiirraTervetuloa()
         Tulosta.Normaali("")
 
-        sanastot = Sanasto().LueSanastoIni()
+        sanastot = LueAsetukset().LueIni("../sanakoe/sanasto.ini")
 
         for indeksi, sanasto in enumerate(sanastot):
             Tulosta.Normaali(str(indeksi+1) + ". " + sanasto)

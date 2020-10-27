@@ -3,6 +3,8 @@ import msvcrt
 import random
 import sys
 import time
+import json
+import configparser
 
 class bcolors:
     HEADER = '\033[95m'
@@ -161,3 +163,21 @@ class LueKayttaja:
                             result = []
             time.sleep(0.04)
         return -99999999
+
+class LueAsetukset:
+
+    def LueSanastoJson(self,nimi):
+        hakemisto = os.path.dirname(__file__)
+        tiedostonimi = os.path.join(hakemisto, nimi)
+        tiedosto = open(tiedostonimi, mode="r", encoding="utf-8")
+        sanastoHakemisto = json.load(tiedosto)
+        tiedosto.closed
+        return sanastoHakemisto
+
+    def LueIni(self,nimi):
+        hakemisto = os.path.dirname(__file__)
+        tiedostonimi = os.path.join(hakemisto, nimi)
+        config = configparser.ConfigParser()
+        config.read(tiedostonimi, encoding="utf-8")
+        sanastoHakemisto = config._sections
+        return sanastoHakemisto
