@@ -63,7 +63,6 @@ class Sanakoe:
         asetukset = LueAsetukset().HaeIni("../asetukset.ini")
         maksimiaika = asetukset.getint("sanakoe","maksimiaika")
 
-        jatka = True
         Piirustukset().PiirraTervetuloa()
         Tulosta.Normaali("")
 
@@ -82,6 +81,7 @@ class Sanakoe:
         else:
             Tulosta.Normaali("Ajastus ei käytössä")
 
+        jatka = True
         while jatka == True:
             otsikko = [*sanastot][sanastonValinta-1]
             sanasto = sanastot[otsikko]
@@ -93,7 +93,7 @@ class Sanakoe:
         Tulosta.Normaali("")
 
 
-def main():
+def Aloita():
     Tulosta.TyhjaRuutu()
     peli = Sanakoe()
     peli.AloitaPeli()
@@ -102,4 +102,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    Aloita()

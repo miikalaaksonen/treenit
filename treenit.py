@@ -5,7 +5,7 @@ from kirjasto.koekirjasto import Piirustukset
 from kirjasto.koekirjasto import Tulosta
 
 
-def main():
+def Aloita():
     Tulosta.TyhjaRuutu()
     pelit = {"sanakoe": sanakoe.Sanakoe(), "kertotaulut": kertotaulu.Kertolaskupeli()}
 
@@ -23,4 +23,4 @@ def main():
     LueKayttaja().LueNappi()
 
 if __name__ == "__main__":
-    main()
+    Aloita()

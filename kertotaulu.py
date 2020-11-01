@@ -74,7 +74,6 @@ class Kertolaskupeli:
         maksimiaika = asetukset.getint("kertotaulu", "maksimiaika")
         vinkit = asetukset.getboolean("kertotaulu", "vinkit")
 
-        jatka = True
         Piirustukset().PiirraTervetuloa()
         Piirustukset().PiirraKuutiot()
         Tulosta.Normaali("")
@@ -96,6 +95,7 @@ class Kertolaskupeli:
         else:
             Tulosta.Normaali("Ajastus ei käytössä")
 
+        jatka = True
         while jatka == True:
             Piirustukset().PirraViiva()
             self.Taulutesti(taulunnumero, maksimi,
@@ -107,7 +107,7 @@ class Kertolaskupeli:
         Tulosta.Normaali("")
 
 
-def main():
+def Aloita():
     Tulosta.TyhjaRuutu()
     peli = Kertolaskupeli()
     peli.AloitaPeli()
@@ -117,4 +117,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    Aloita()
