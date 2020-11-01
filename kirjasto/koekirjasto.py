@@ -6,6 +6,7 @@ import time
 import json
 import configparser
 
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -16,30 +17,31 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+
 class Tulosta:
 
     @classmethod
     def TyhjaRuutu(cls):
         os.system('cls')
-    
+
     @classmethod
-    def Normaali(cls,teksti):
+    def Normaali(cls, teksti):
         print(teksti)
 
     @classmethod
-    def Korostus(cls,teksti):
+    def Korostus(cls, teksti):
         print(bcolors.BOLD + teksti + bcolors.ENDC)
 
     @classmethod
-    def Keltainen(cls,teksti):
+    def Keltainen(cls, teksti):
         print(bcolors.WARNING + teksti + bcolors.ENDC)
 
     @classmethod
-    def Sininen(cls,teksti):
+    def Sininen(cls, teksti):
         print(bcolors.OKBLUE + teksti + bcolors.ENDC)
 
     @classmethod
-    def Vihrea(cls,teksti):
+    def Vihrea(cls, teksti):
         print(bcolors.OKGREEN + teksti + bcolors.ENDC)
 
 
@@ -83,7 +85,9 @@ class Piirustukset:
         Tulosta.Normaali(teksti)
 
     def PirraViiva(self):
-        Tulosta.Vihrea("--------------------------------------------------------------------------------")
+        Tulosta.Vihrea(
+            "--------------------------------------------------------------------------------")
+
 
 class LueKayttaja:
     def OnkoNumero(self, teksti):
@@ -164,9 +168,10 @@ class LueKayttaja:
             time.sleep(0.04)
         return -99999999
 
+
 class LueAsetukset:
 
-    def LueSanastoJson(self,nimi):
+    def LueSanastoJson(self, nimi):
         hakemisto = os.path.dirname(__file__)
         tiedostonimi = os.path.join(hakemisto, nimi)
         tiedosto = open(tiedostonimi, mode="r", encoding="utf-8")
@@ -174,10 +179,14 @@ class LueAsetukset:
         tiedosto.closed
         return sanastoHakemisto
 
-    def LueIni(self,nimi):
+    def LueIni(self, nimi):
+        asetukset = self.HaeIni(nimi)
+        sanastoHakemisto = asetukset._sections
+        return sanastoHakemisto
+
+    def HaeIni(self, nimi):
         hakemisto = os.path.dirname(__file__)
         tiedostonimi = os.path.join(hakemisto, nimi)
-        config = configparser.ConfigParser()
-        config.read(tiedostonimi, encoding="utf-8")
-        sanastoHakemisto = config._sections
-        return sanastoHakemisto
+        asetukset = configparser.ConfigParser()
+        asetukset.read(tiedostonimi, encoding="utf-8")
+        return asetukset

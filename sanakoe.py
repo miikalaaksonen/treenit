@@ -7,6 +7,7 @@ from kirjasto.koekirjasto import LueKayttaja
 from kirjasto.koekirjasto import Piirustukset
 from kirjasto.koekirjasto import LueAsetukset
 
+
 class Sanakoe:
 
     def Koe(self, otsikko, sanat):
@@ -20,9 +21,10 @@ class Sanakoe:
         Tulosta.Normaali("Aloitetaan")
         Piirustukset().PirraViiva()
         for indeksi, kysymys in enumerate(sanalista):
-            Tulosta.Normaali("Kysymys (" + str(indeksi+1) + "/" + str(len(sanalista)) + ")")
+            Tulosta.Normaali("Kysymys (" + str(indeksi+1) +
+                             "/" + str(len(sanalista)) + ")")
             Tulosta.Normaali("")
-            Tulosta.Keltainen(kysymys +" ?")
+            Tulosta.Keltainen(kysymys + " ?")
             Tulosta.Normaali("")
 
             oikeavastaus = sanat[kysymys]
@@ -33,14 +35,16 @@ class Sanakoe:
                 oikeat = oikeat+1
             else:
 
-                Tulosta.Korostus("Väärin. Oikea vastaus on " + str(oikeavastaus))
+                Tulosta.Korostus(
+                    "Väärin. Oikea vastaus on " + str(oikeavastaus))
                 if vastaus.lower() == oikeavastaus.lower():
                     Tulosta.Normaali("Muista isot kirjaimet")
                 vaarat = vaarat+1
             Piirustukset().PirraViiva()
 
         Tulosta.Normaali("************************")
-        Tulosta.Normaali("* Oikein " + str(oikeat) + " * Väärin " + str(vaarat)+" *")
+        Tulosta.Normaali("* Oikein " + str(oikeat) +
+                         " * Väärin " + str(vaarat)+" *")
         Tulosta.Normaali("************************")
 
         if vaarat == 0:
@@ -52,6 +56,10 @@ class Sanakoe:
             Tulosta.Normaali("Harjoittele vielä!")
 
     def AloitaPeli(self):
+
+        asetukset = LueAsetukset().LueIni("../asetukset.ini")["sanakoe"]
+        maksimiaika = int(asetukset["maksimiaika"])
+
         jatka = True
         Piirustukset().PiirraTervetuloa()
         Tulosta.Normaali("")
@@ -61,12 +69,12 @@ class Sanakoe:
         for indeksi, sanasto in enumerate(sanastot):
             Tulosta.Normaali(str(indeksi+1) + ". " + sanasto)
 
-        sanastonValinta = LueKayttaja().LueNumeroAjastettu(99999,len(str(len(sanastot))))
+        sanastonValinta = LueKayttaja().LueNumeroAjastettu(99999, len(str(len(sanastot))))
 
         while jatka == True:
             otsikko = [*sanastot][sanastonValinta-1]
             sanasto = sanastot[otsikko]
-            self.Koe(otsikko,sanasto)
+            self.Koe(otsikko, sanasto)
             Tulosta.Korostus("Pelaataanko uudestaan? (k/e)")
             jatka = LueKayttaja().LueVastausKnappi()
             Tulosta.TyhjaRuutu()
@@ -81,8 +89,6 @@ def main():
     Tulosta.Normaali("Paina jotain nappia lopettaaksesi")
     LueKayttaja().LueNappi()
 
+
 if __name__ == "__main__":
     main()
-
-
-
