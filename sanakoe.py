@@ -57,8 +57,8 @@ class Sanakoe:
 
     def AloitaPeli(self):
 
-        asetukset = LueAsetukset().LueIni("../asetukset.ini")["sanakoe"]
-        maksimiaika = int(asetukset["maksimiaika"])
+        #asetukset = LueAsetukset().HaeIni("../asetukset.ini")
+        #maksimiaika = asetukset.getint("sanakoe","maksimiaika")
 
         jatka = True
         Piirustukset().PiirraTervetuloa()
