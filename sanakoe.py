@@ -10,7 +10,7 @@ from kirjasto.koekirjasto import LueAsetukset
 
 class Sanakoe:
 
-    def Koe(self, otsikko, sanat):
+    def Koe(self, otsikko, sanat, ajastus, maksimiaika):
         sanalista = list(sanat.keys())
         random.shuffle(sanalista)
 
@@ -28,7 +28,10 @@ class Sanakoe:
             Tulosta.Normaali("")
 
             oikeavastaus = sanat[kysymys]
-            vastaus = LueKayttaja().LueVastausSana()
+            if ajastus:
+                vastaus = LueKayttaja().LueSanaAjastettu(maksimiaika)
+            else:
+                vastaus = LueKayttaja().LueVastausSana()
 
             if vastaus == oikeavastaus:
                 Tulosta.Korostus("Oikein")
@@ -57,8 +60,8 @@ class Sanakoe:
 
     def AloitaPeli(self):
 
-        #asetukset = LueAsetukset().HaeIni("../asetukset.ini")
-        #maksimiaika = asetukset.getint("sanakoe","maksimiaika")
+        asetukset = LueAsetukset().HaeIni("../asetukset.ini")
+        maksimiaika = asetukset.getint("sanakoe","maksimiaika")
 
         jatka = True
         Piirustukset().PiirraTervetuloa()
@@ -71,10 +74,18 @@ class Sanakoe:
 
         sanastonValinta = LueKayttaja().LueNumeroAjastettu(99999, len(str(len(sanastot))))
 
+        Tulosta.Korostus("Haluatko "+str(maksimiaika) +
+                         "s ajastuksen käyttöön? (k/e)")
+        ajastus = LueKayttaja().LueVastausKnappi()
+        if ajastus:
+            Tulosta.Normaali("Ajastus käytössä")
+        else:
+            Tulosta.Normaali("Ajastus ei käytössä")
+
         while jatka == True:
             otsikko = [*sanastot][sanastonValinta-1]
             sanasto = sanastot[otsikko]
-            self.Koe(otsikko, sanasto)
+            self.Koe(otsikko, sanasto, ajastus, maksimiaika)
             Tulosta.Korostus("Pelaataanko uudestaan? (k/e)")
             jatka = LueKayttaja().LueVastausKnappi()
             Tulosta.TyhjaRuutu()

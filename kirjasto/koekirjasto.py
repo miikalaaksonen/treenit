@@ -169,6 +169,31 @@ class LueKayttaja:
         return -99999999
 
 
+    def LueSanaAjastettu(self, timeout):
+        timer = time.monotonic
+        endtime = timer() + timeout
+        result = []
+        while timer() < endtime:
+            if msvcrt.kbhit():
+                nappi = msvcrt.getwch()
+                if nappi == '\b' and len(result) > 0:
+                    result = result[:-1]
+                    msvcrt.putwch(nappi)
+
+                else:
+                    msvcrt.putwch(nappi)
+                    if nappi  == '\r':
+                        if len(result) > 0:
+                            lue = ''.join(result)
+                            print()
+                            return lue
+                    else:
+                        result.append(nappi)
+
+            time.sleep(0.04)
+        return ""
+
+
 class LueAsetukset:
 
     def LueSanastoJson(self, nimi):
