@@ -38,6 +38,7 @@ class Sanakoe:
 
             if vastaus == oikeavastaus:
                 Tulosta.Korostus("Oikein")
+                Piirustukset().PiirraTahti()
                 oikeat = oikeat+1
             else:
 
