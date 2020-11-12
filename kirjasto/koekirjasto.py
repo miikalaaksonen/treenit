@@ -75,6 +75,9 @@ class Piirustukset:
 
     def PiirraTahti(self):
         self.Piirra(self.kansio + "tahti.txt")
+ 
+    def PiirraAuto(self):
+        self.Piirra(self.kansio + "auto.txt")
 
     def Piirra(self, nimi):
         hakemisto = os.path.dirname(__file__)
