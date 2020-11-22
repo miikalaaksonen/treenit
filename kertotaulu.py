@@ -1,4 +1,4 @@
-import random
+import secrets
 from kirjasto.koekirjasto import Tulosta
 from kirjasto.koekirjasto import LueKayttaja
 from kirjasto.koekirjasto import Piirustukset
@@ -24,7 +24,7 @@ class Kertolaskupeli:
 
     def Taulutesti(self, taulunnumero, asetukset):
         numerot = list(range(1, asetukset.maksimi+1))
-        random.shuffle(numerot)
+        secrets.SystemRandom().shuffle(numerot)
 
         oikeat = 0
         vaarat = 0

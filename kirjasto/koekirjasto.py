@@ -1,6 +1,6 @@
 import os
 import msvcrt
-import random
+import secrets
 import sys
 import time
 import json
@@ -50,13 +50,14 @@ class Piirustukset:
     kuvat = {
         1: "lintu.txt",
         2: "hevonen.txt",
-        3: "hai.txt"
+        3: "hai.txt",
+        4: "elefantti.txt"
     }
 
     kansio = "kuvat/"
 
     def PirraSatunnainen(self):
-        valinta = random.Random().randint(1, len(self.kuvat))
+        valinta = secrets.SystemRandom().randint(1, len(self.kuvat))
         self.Piirra(self.kansio + self.kuvat.get(valinta))
 
     def PiirraLintu(self):
