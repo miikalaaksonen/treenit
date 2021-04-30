@@ -9,6 +9,7 @@ class TauluAsetukset:
     maksimiaika = 0
     vinkit = False
     ajastus = False
+    tekijakysely = False
 
 class Kertolaskupeli:
 
@@ -36,8 +37,16 @@ class Kertolaskupeli:
             Tulosta.Normaali(
                 "Kysymys (" + str(indeksi+1) + "/" + str(asetukset.maksimi) + ")")
             Tulosta.Normaali("")
-            Tulosta.Keltainen("Paljonko on " + str(kysymys) +
-                              " x " + str(taulunnumero)+" ?")
+            if asetukset.tekijakysely:
+                tulo = kysymys * taulunnumero
+                Tulosta.Keltainen("Paljonko on " + str(taulunnumero) +
+                                " * X = " + str(tulo)+" ?")
+                oikeavastaus = kysymys
+
+            else:
+                Tulosta.Keltainen("Paljonko on " + str(kysymys) +
+                                " * " + str(taulunnumero)+" ?")
+                oikeavastaus = kysymys * taulunnumero
             Tulosta.Normaali("")
             if asetukset.vinkit:
                 self.TulostaVinkit(kysymys, taulunnumero)
@@ -46,7 +55,6 @@ class Kertolaskupeli:
             if asetukset.ajastus:
                 aika = asetukset.maksimiaika
 
-            oikeavastaus = kysymys * taulunnumero
             vastausnumero = LueKayttaja().LueNumeroAjastettu(aika, len(str(oikeavastaus)))
 
             if vastausnumero == oikeavastaus:
@@ -79,6 +87,7 @@ class Kertolaskupeli:
         asetukset.maksimi = asetuksetIni.getint("kertotaulu", "maksimi")
         asetukset.maksimiaika = asetuksetIni.getint("kertotaulu", "maksimiaika")
         asetukset.vinkit = asetuksetIni.getboolean("kertotaulu", "vinkit")
+        asetukset.tekijakysely = asetuksetIni.getboolean("kertotaulu", "tekijakysely")
 
         Piirustukset().PiirraTervetuloa()
         Piirustukset().PiirraKuutiot()
