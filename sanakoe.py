@@ -64,14 +64,9 @@ class Sanakoe(Peli):
             Tulosta.Normaali("Harjoittele vielä!")
 
     def AloitaPeli(self):
-
+        asetuksetIni = self.Aloita()
         asetukset = SanakoeAsetukset()
-        asetuksetIni = LueAsetukset().HaeIni("../asetukset.ini")
         asetukset.maksimiaika = asetuksetIni.getint("sanakoe","maksimiaika")
-
-        Tulosta.TyhjaRuutu()
-        Piirustukset().PiirraTervetuloa()
-        Tulosta.Normaali("")
 
         sanastot = LueAsetukset().LueIni("../sanakoe/sanasto.ini")
 
@@ -90,12 +85,11 @@ class Sanakoe(Peli):
 
         jatka = True
         while jatka == True:
+            Piirustukset().PirraViiva()
             otsikko = [*sanastot][sanastonValinta-1]
             sanasto = sanastot[otsikko]
             self.Koe(otsikko, sanasto, asetukset)
-            Tulosta.Korostus("Pelaataanko uudestaan? (k/e)")
-            jatka = LueKayttaja().LueVastausKnappi()
-            Tulosta.TyhjaRuutu()
+            jatka = self.Jatka()
         self.Lopeta()
 
 

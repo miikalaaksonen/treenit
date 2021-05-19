@@ -3,7 +3,6 @@ from peli import Peli
 from kirjasto.koekirjasto import Tulosta
 from kirjasto.koekirjasto import LueKayttaja
 from kirjasto.koekirjasto import Piirustukset
-from kirjasto.koekirjasto import LueAsetukset
 
 class TauluAsetukset:
     maksimi = 0
@@ -82,16 +81,13 @@ class Kertolaskupeli(Peli):
             Tulosta.Normaali("Harjoittele vielä!")
 
     def AloitaPeli(self):
-
+        asetuksetIni = self.Aloita()
         asetukset = TauluAsetukset()
-        asetuksetIni = LueAsetukset().HaeIni("../asetukset.ini")
         asetukset.maksimi = asetuksetIni.getint("kertotaulu", "maksimi")
         asetukset.maksimiaika = asetuksetIni.getint("kertotaulu", "maksimiaika")
         asetukset.vinkit = asetuksetIni.getboolean("kertotaulu", "vinkit")
         asetukset.tekijakysely = asetuksetIni.getboolean("kertotaulu", "tekijakysely")
 
-        Tulosta.TyhjaRuutu()
-        Piirustukset().PiirraTervetuloa()
         Piirustukset().PiirraKuutiot()
         Tulosta.Normaali("")
         Tulosta.Normaali(
@@ -117,9 +113,7 @@ class Kertolaskupeli(Peli):
         while jatka == True:
             Piirustukset().PirraViiva()
             self.Taulutesti(taulunnumero, asetukset)
-            Tulosta.Korostus("Pelaataanko uudestaan? (k/e)")
-            jatka = LueKayttaja().LueVastausKnappi()
-            Tulosta.TyhjaRuutu()
+            jatka = self.Jatka()
         self.Lopeta()
 
 
