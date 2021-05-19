@@ -59,7 +59,7 @@ class Kertolaskupeli(Peli):
 
             if vastausnumero == oikeavastaus:
                 Tulosta.Korostus("Oikein")
-                Piirustukset().PiirraAuto()
+                Piirustukset().PirraLaivaAuto()
                 oikeat = oikeat+1
             else:
                 Tulosta.Korostus(

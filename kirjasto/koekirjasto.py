@@ -80,6 +80,17 @@ class Piirustukset:
     def PiirraAuto(self):
         self.Piirra(self.kansio + "auto.txt")
 
+    def PiirraLaiva(self):
+        self.Piirra(self.kansio + "laiva.txt")
+
+    def PirraLaivaAuto(self):
+        laivaauto = {
+            1: "laiva.txt",
+            2: "auto.txt",
+        }
+        valinta = secrets.SystemRandom().randint(1, len(laivaauto))
+        self.Piirra(self.kansio + laivaauto.get(valinta))
+
     def Piirra(self, nimi):
         hakemisto = os.path.dirname(__file__)
         tiedostonimi = os.path.join(hakemisto, nimi)
