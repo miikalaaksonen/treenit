@@ -13,7 +13,6 @@ def Aloita():
         Tulosta.Normaali(str(indeksi+1) + ". " + sanat)
 
     peliValinta = LueKayttaja().LueNumeroAjastettu(99999,len(str(len(pelit))))
-    Tulosta.TyhjaRuutu()
     pelinNimi = [*pelit][peliValinta-1]
     peli = pelit[pelinNimi]
     peli.AloitaPeli()
