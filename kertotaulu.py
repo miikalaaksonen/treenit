@@ -30,6 +30,7 @@ class Kertolaskupeli(Peli):
         oikeat = 0
         vaarat = 0
 
+        Piirustukset().PirraViiva()
         Tulosta.Normaali("Kertotaulu " + str(taulunnumero) + " valittu.\n")
         Tulosta.Normaali("Aloitetaan")
         Piirustukset().PirraViiva()
@@ -111,7 +112,6 @@ class Kertolaskupeli(Peli):
 
         jatka = True
         while jatka == True:
-            Piirustukset().PirraViiva()
             self.Taulutesti(taulunnumero, asetukset)
             jatka = self.Jatka()
         self.Lopeta()

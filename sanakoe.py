@@ -21,6 +21,7 @@ class Sanakoe(Peli):
         oikeat = 0
         vaarat = 0
 
+        Piirustukset().PirraViiva()
         Tulosta.Normaali(otsikko + " valittu\n")
         Tulosta.Normaali("Aloitetaan")
         Piirustukset().PirraViiva()
@@ -74,6 +75,8 @@ class Sanakoe(Peli):
             Tulosta.Normaali(str(indeksi+1) + ". " + sanasto)
 
         sanastonValinta = LueKayttaja().LueNumeroAjastettu(99999, len(str(len(sanastot))))
+        otsikko = [*sanastot][sanastonValinta-1]
+        sanasto = sanastot[otsikko]
 
         Tulosta.Korostus("Haluatko "+str(asetukset.maksimiaika) +
                          "s ajastuksen käyttöön? (k/e)")
@@ -85,9 +88,6 @@ class Sanakoe(Peli):
 
         jatka = True
         while jatka == True:
-            Piirustukset().PirraViiva()
-            otsikko = [*sanastot][sanastonValinta-1]
-            sanasto = sanastot[otsikko]
             self.Koe(otsikko, sanasto, asetukset)
             jatka = self.Jatka()
         self.Lopeta()
