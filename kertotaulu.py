@@ -1,4 +1,5 @@
 import secrets
+from peli import Peli
 from kirjasto.koekirjasto import Tulosta
 from kirjasto.koekirjasto import LueKayttaja
 from kirjasto.koekirjasto import Piirustukset
@@ -11,7 +12,7 @@ class TauluAsetukset:
     ajastus = False
     tekijakysely = False
 
-class Kertolaskupeli:
+class Kertolaskupeli(Peli):
 
     def TulostaVinkit(self, kysymys, taulunnumero):
         edellinen = (kysymys-1) * taulunnumero
@@ -89,6 +90,7 @@ class Kertolaskupeli:
         asetukset.vinkit = asetuksetIni.getboolean("kertotaulu", "vinkit")
         asetukset.tekijakysely = asetuksetIni.getboolean("kertotaulu", "tekijakysely")
 
+        Tulosta.TyhjaRuutu()
         Piirustukset().PiirraTervetuloa()
         Piirustukset().PiirraKuutiot()
         Tulosta.Normaali("")
@@ -96,10 +98,11 @@ class Kertolaskupeli:
             "Anna kertotaulun numero jota haluat haluat harjoitella. Mikä vain kokonaisluku")
         taulunnumero = LueKayttaja().LueNumero()
 
-        if asetukset.vinkit:
-            Tulosta.Normaali("\nVinkit käytössä\n")
-        else:
-            Tulosta.Normaali("\nVinkit ei käytössä\n")
+        if not asetukset.tekijakysely:
+            if asetukset.vinkit:
+                Tulosta.Normaali("\nVinkit käytössä\n")
+            else:
+                Tulosta.Normaali("\nVinkit ei käytössä\n")
 
             Tulosta.Normaali("")
         Tulosta.Korostus("Haluatko "+str(asetukset.maksimiaika) +
@@ -117,18 +120,9 @@ class Kertolaskupeli:
             Tulosta.Korostus("Pelaataanko uudestaan? (k/e)")
             jatka = LueKayttaja().LueVastausKnappi()
             Tulosta.TyhjaRuutu()
-        Tulosta.Normaali("Kiva kun pelasit ja opit uutta!")
-        Tulosta.Normaali("")
-
-
-def Aloita():
-    Tulosta.TyhjaRuutu()
-    peli = Kertolaskupeli()
-    peli.AloitaPeli()
-    Piirustukset().PirraViiva()
-    Tulosta.Normaali("Paina jotain nappia lopettaaksesi")
-    LueKayttaja().LueNappi()
+        self.Lopeta()
 
 
 if __name__ == "__main__":
-    Aloita()
+    peli = Kertolaskupeli()
+    peli.AloitaPeli()

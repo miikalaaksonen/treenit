@@ -18,9 +18,5 @@ def Aloita():
     peli = pelit[pelinNimi]
     peli.AloitaPeli()
 
-    Piirustukset().PirraViiva()
-    Tulosta.Normaali("Paina jotain nappia lopettaaksesi")
-    LueKayttaja().LueNappi()
-
 if __name__ == "__main__":
     Aloita()

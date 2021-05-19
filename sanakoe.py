@@ -1,4 +1,5 @@
 import os
+from peli import Peli
 import random
 import json
 import configparser
@@ -11,7 +12,7 @@ class SanakoeAsetukset:
     maksimiaika = 0
     ajastus = False
 
-class Sanakoe:
+class Sanakoe(Peli):
 
     def Koe(self, otsikko, sanat, asetukset):
         sanalista = list(sanat.keys())
@@ -68,6 +69,7 @@ class Sanakoe:
         asetuksetIni = LueAsetukset().HaeIni("../asetukset.ini")
         asetukset.maksimiaika = asetuksetIni.getint("sanakoe","maksimiaika")
 
+        Tulosta.TyhjaRuutu()
         Piirustukset().PiirraTervetuloa()
         Tulosta.Normaali("")
 
@@ -94,17 +96,9 @@ class Sanakoe:
             Tulosta.Korostus("Pelaataanko uudestaan? (k/e)")
             jatka = LueKayttaja().LueVastausKnappi()
             Tulosta.TyhjaRuutu()
-        Tulosta.Normaali("Kiva kun pelasit ja opit uutta!")
-        Tulosta.Normaali("")
-
-
-def Aloita():
-    Tulosta.TyhjaRuutu()
-    peli = Sanakoe()
-    peli.AloitaPeli()
-    Tulosta.Normaali("Paina jotain nappia lopettaaksesi")
-    LueKayttaja().LueNappi()
+        self.Lopeta()
 
 
 if __name__ == "__main__":
-    Aloita()
+    peli = Sanakoe()
+    peli.AloitaPeli()
